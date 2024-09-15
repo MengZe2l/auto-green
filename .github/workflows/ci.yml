@@ -1,11 +1,11 @@
-name: ci
+name: 自动提交保持常在线
 
 on:
   push:
     branches:
       - master
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "* * * * *"
 
 jobs:
   autogreen:
@@ -14,10 +14,10 @@ jobs:
       - name: Clone repository
         uses: actions/checkout@v2
 
-      - name: Auto green
+      - name: 发送空提交
         run: |
-          git config --local user.email "liujianlijin@gmail.com"
-          git config --local user.name "Stephen"
+          git config --local user.email "i@mengze2.cn"
+          git config --local user.name "MengZe2l"
           git remote set-url origin https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
           git pull --rebase
           git commit --allow-empty -m "a commit a day keeps your girlfriend away"
